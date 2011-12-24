@@ -4,7 +4,11 @@ require './models/question'
 enable :sessions
 
 get '/' do
-  'hi'
+  erb :index
+end
+
+get '/new/quiz' do
+  erb :quiz
 end
 
 get '/new/verb' do
@@ -23,7 +27,7 @@ get '/new/conjugation' do
   @verbs = Verb.all
 
   if @verbs.empty?
-    session[:message] = 'no verbs'
+    session[:message] = 'There are no verbs, you must first add a verb before you can add a conjugation.'
 
     redirect 'new/verb'
   end
