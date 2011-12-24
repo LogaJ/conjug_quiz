@@ -1,0 +1,30 @@
+<form action="/new/conjugation" method="POST">
+  Verb name: 
+  <br />
+  <select name="verb_id" id="verb_id">
+    <% @verbs.each do |v| %>
+      <option value="<%= v.id %>"><%= v.name %></option>
+    <% end %>
+  </select><br /><br />
+
+  Singular/Plural:
+  <br />
+  <input type="radio" name="singular_plural" value="singular" />Singular<br />
+  <input type="radio" name="singular_plural" value="plural" />Plural<br /><br />
+
+  Person: 
+  <br />
+  <select name="person">
+    <option value="1st"/>1st person
+    <option value="2nd"/>2nd Person
+    <option value="3rd"/>3rd Person
+  </select><br /><br />
+
+  Conjugation name: 
+  <br />
+  <input type="text" name="conjug_name" id="conjug_name"/><br /><br />
+
+  <input type="submit" value="Add Conjugation"><br /><br />
+
+  <a href="/new/verb">create a new verb</a>
+</form>
