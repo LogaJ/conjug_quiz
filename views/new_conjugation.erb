@@ -1,7 +1,7 @@
 <form action="/new/conjugation" method="POST">
   Verb name: 
   <br />
-  <select name="verb_id" id="verb_id">
+  <select name="verb_id" id="verb_id" onchange="checkConjugation()">
     <% @verbs.each do |v| %>
       <option value="<%= v.id %>"><%= v.name %></option>
     <% end %>
@@ -9,7 +9,7 @@
 
   Person: 
   <br />
-  <select name="person">
+  <select name="person" id="person" onchange="checkConjugation()">
     <option value="1st"/>1st person
     <option value="2nd"/>2nd Person
     <option value="3rd"/>3rd Person
@@ -17,12 +17,14 @@
 
   Singular/Plural:
   <br />
-  <input type="radio" name="singular_plural" value="singular" />Singular<br />
-  <input type="radio" name="singular_plural" value="plural" />Plural<br /><br />
+  <select name="singular_plural" id="singular_plural" onchange="checkConjugation()">
+    <option value="singular">Singular</option>
+    <option value="plural">Plural</option>
+  </select><br /><br />
 
   Conjugation name: 
   <br />
-  <input type="text" name="conjug_name" id="conjug_name"/><br /><br />
+  <input type="text" name="conjug_name" id="conjug_name"></input><br /><br />
 
   <input type="submit" value="Add Conjugation"><br /><br />
 </form>
