@@ -8,3 +8,5 @@ gem 'shotgun'
 
 gem 'cucumber'
 gem 'capybara'
+
+gem 'rspec'

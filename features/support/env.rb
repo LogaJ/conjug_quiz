@@ -1,6 +1,6 @@
-$LOAD_PATH << File.expand_path('../../../../', __FILE__)
+$LOAD_PATH << File.expand_path('../../../', __FILE__)
 
-require 'conjugquiz_app'
+require 'conjug_quiz_app'
 require 'rack/test'
 require 'capybara'
 require 'capybara/cucumber'
