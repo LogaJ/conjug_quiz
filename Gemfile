@@ -1,5 +1,10 @@
 source :rubygems
 
-gem 'sinatra'
 gem 'datamapper'
-gem 'haml'
+gem 'dm-sqlite-adapter'
+
+gem 'sinatra'
+gem 'shotgun'
+
+gem 'cucumber'
+gem 'capybara'
