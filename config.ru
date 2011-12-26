@@ -1,2 +1,2 @@
-require './conjug_quiz_app.rb'
+require './conjug_quiz_app'
 run ConjugQuiz
