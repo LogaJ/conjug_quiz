@@ -94,13 +94,13 @@ class ConjugQuiz < Sinatra::Base
 
   def compare_correct_answers_with provided_answers
     user_answers = {}
+    total_score = []
 
     provided_answers.each do |key, value|
-      con_id = key.gsub(/question_/, '')
+      quiz_answer_id = key.gsub(/question_/, '')
 
-      user_answers[con_id] = value
+      user_answers[quiz_answer_id] = value
     end
-
     quiz_question_results = []
 
     user_answers.each do |key, value|
@@ -108,11 +108,15 @@ class ConjugQuiz < Sinatra::Base
 
       if value.downcase.eql? conjugation.value.downcase
         quiz_question_results << "Correct: \"#{value}\" is the correct answer"
+
+        total_score << 1
+
       else
         quiz_question_results << "Incorrect: \"#{value}\" is the wrong answer, the answer should be: #{conjugation.value}"
       end
-
     end
+
+    @final_score = total_score.inject(:+)
     return quiz_question_results
   end
 end
