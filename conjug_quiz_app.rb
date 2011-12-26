@@ -17,6 +17,12 @@ class ConjugQuiz < Sinatra::Base
     erb :new_quiz
   end
 
+  post '/check/answers' do
+    @answers = compare_correct_answers_with params
+
+    erb :quiz_scores
+  end
+
   get '/new/verb' do
     @message = session[:message]
     session.clear
@@ -34,10 +40,8 @@ class ConjugQuiz < Sinatra::Base
     @custom_js = '<script type="text/javascript" src="/js/conjugation_finder.js"></script>'
 
     @verbs = Verb.all
-
     if @verbs.empty?
       session[:message] = 'There are no verbs, you must first add a verb before you can add a conjugation.'
-
       redirect 'new/verb'
     end
 
@@ -56,7 +60,6 @@ class ConjugQuiz < Sinatra::Base
 
     redirect '/new/conjugation'
   end
-
 
   get '/ajax/conjugation' do
     erb :get_conjugation, :layout => false
@@ -81,11 +84,35 @@ class ConjugQuiz < Sinatra::Base
     info_for_all_questions = []
 
     conjugations.each do |conjugation|
-
       info_for_one_question = {:verb => Verb.get(conjugation.verb_id), :conjugation => conjugation}
+
       info_for_all_questions << info_for_one_question
 
     end
     return info_for_all_questions
+  end
+
+  def compare_correct_answers_with provided_answers
+    user_answers = {}
+
+    provided_answers.each do |key, value|
+      con_id = key.gsub(/question_/, '')
+
+      user_answers[con_id] = value
+    end
+
+    quiz_question_results = []
+
+    user_answers.each do |key, value|
+      conjugation = Conjugation.get(key)
+
+      if value.downcase.eql? conjugation.value.downcase
+        quiz_question_results << "Correct: \"#{value}\" is the correct answer"
+      else
+        quiz_question_results << "Incorrect: \"#{value}\" is the wrong answer, the answer should be: #{conjugation.value}"
+      end
+
+    end
+    return quiz_question_results
   end
 end
