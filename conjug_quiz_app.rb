@@ -9,12 +9,12 @@ class ConjugQuiz < Sinatra::Base
   end
 
   get '/new/quiz' do
-    verb = Verb.get(12)
-    conjugation = verb.conjugations.get(17)
+    conjugations = Conjugation.all
+    conjugations = conjugations.sample(10)
 
-    @question_one = "What is the #{conjugation.person} person #{conjugation.singular_or_plural} for the verb: #{verb.name} (#{verb.meaning})?"
+    @questions = generate_question_info_for conjugations
 
-    erb :quiz
+    erb :new_quiz
   end
 
   get '/new/verb' do
@@ -31,27 +31,8 @@ class ConjugQuiz < Sinatra::Base
   end
 
   get '/new/conjugation' do
-    @function = "function checkConjugation() {
-      var verb = $('verb_id').value
-      var person = $('person').value
-      var singular_plural = $('singular_plural').value
+    @custom_js = '<script type="text/javascript" src="/js/conjugation_finder.js"></script>'
 
-      var url     = '/ajax/conjugation';
-      var options = {
-        method : 'post',
-        parameters : {
-          verb    : verb,
-          person  : person,
-          number  : singular_plural
-        },
-        onComplete : getResponse
-      };
-      new Ajax.Request(url, options);
-    }
-    
-    function getResponse(oReq) {
-      $('conjug_name').value = oReq.responseText;
-    }"
     @verbs = Verb.all
 
     if @verbs.empty?
@@ -78,23 +59,33 @@ class ConjugQuiz < Sinatra::Base
 
 
   get '/ajax/conjugation' do
-      erb :get_conjugation, :layout => false
+    erb :get_conjugation, :layout => false
   end
 
   post '/ajax/conjugation' do
-    verb = params[:verb]
+    verb_id = params[:verb]
     person = params[:person]
     number = params[:number]
 
-    puts "#{verb}, #{person}, #{number}"
+    verb = Verb.get(verb_id)
+    already_existing_conjugation = verb.conjugations.first(:person => person, :singular_or_plural => number)
 
-    my_verb = Verb.get(verb)
-    con = my_verb.conjugations.first(:person => person, :singular_or_plural => number)
-
-    if con 
-      @conjugation = con.value
+    if already_existing_conjugation 
+      @conjugation = already_existing_conjugation.value
 
       erb :get_conjugation, :layout => false
     end
+  end
+
+  def generate_question_info_for conjugations
+    info_for_all_questions = []
+
+    conjugations.each do |conjugation|
+
+      info_for_one_question = {:verb => Verb.get(conjugation.verb_id), :conjugation => conjugation}
+      info_for_all_questions << info_for_one_question
+
+    end
+    return info_for_all_questions
   end
 end

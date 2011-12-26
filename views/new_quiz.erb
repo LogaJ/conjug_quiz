@@ -1,0 +1,11 @@
+<form action="/check/answers" method="POST">
+  <% @questions.each do |q| %><p>
+
+   What is the <%= q[:conjugation].person %> person <%= q[:conjugation].singular_or_plural %> for the verb: <%= q[:verb].name %> (<%= q[:verb].meaning %>)
+   <input type="text" name="question_<%= q[:conjugation].conjugation_id  %>" id="question_<%= q[:conjugation].conjugation_id  %>"/>
+  <% end %>
+
+  <input type="submit" value="Check Answers"><br /><br />
+</form>
+
+<a href="/">go home</a>
