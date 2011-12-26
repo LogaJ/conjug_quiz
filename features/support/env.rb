@@ -5,7 +5,11 @@ require 'rack/test'
 require 'capybara'
 require 'capybara/cucumber'
 
+Capybara.run_server = true
 Capybara.app = ConjugQuiz
+Capybara.app_host = 'http://localhost:9393/'
+Capybara.default_driver = :selenium
+
 
 class ConjugQuizExample
 
