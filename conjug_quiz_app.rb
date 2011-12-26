@@ -107,12 +107,12 @@ class ConjugQuiz < Sinatra::Base
       conjugation = Conjugation.get(key)
 
       if value.downcase.eql? conjugation.value.downcase
-        quiz_question_results << "Correct: \"#{value}\" is the correct answer"
+        quiz_question_results << "Correct: \"<font color=\"green\">#{value.downcase}</font>\" is the correct answer"
 
        @final_score += 1
 
       else
-        quiz_question_results << "Incorrect: \"#{value}\" is the wrong answer, the answer should be: #{conjugation.value}"
+        quiz_question_results << "Incorrect: \"<font color=\"red\">#{value.downcase}</font>\" is the wrong answer, the answer should be: \"<font color=\"green\">#{conjugation.value.downcase}</font>\""
       end
     end
 
