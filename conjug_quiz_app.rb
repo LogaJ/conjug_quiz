@@ -31,7 +31,7 @@ class ConjugQuiz < Sinatra::Base
   end
 
   post '/new/verb' do
-    Verb.create name: params[:verb_name], meaning: params[:verb_meaning]
+    Verb.first_or_create name: params[:verb_name], meaning: params[:verb_meaning]
 
     redirect '/new/verb'
   end
