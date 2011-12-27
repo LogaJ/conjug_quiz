@@ -1,12 +1,11 @@
 source :rubygems
 
+gem 'dm-postgres-adapter'
 gem 'datamapper'
-gem 'dm-sqlite-adapter'
+gem 'pg'
 
 gem 'sinatra'
-gem 'shotgun'
 
-gem 'cucumber'
-gem 'capybara'
-
-gem 'rspec'
+gem 'thin', '1.2.7'
+gem 'heroku'
+gem 'foreman'
