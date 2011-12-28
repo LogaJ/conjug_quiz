@@ -1,8 +1,10 @@
 source :rubygems
 
-gem 'dm-postgres-adapter'
 gem 'datamapper'
 gem 'pg'
+
+gem 'dm-postgres-adapter'
+gem 'dm-sqlite-adapter'
 
 gem 'sinatra'
 
