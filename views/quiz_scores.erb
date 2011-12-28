@@ -1,4 +1,9 @@
-<% @answers.each do |a| %>
-  <p><%= a %></p>
+<% @answers.each do |answer| %>
+  <p><%= answer %></p>
 <% end %>
+
 <p>Your ConjugQuiz Score is: <%= @final_score %> out of: <%= @answers.length %></p>
+
+<p><a href="/new/quiz">take a new quiz test</a></p>
+
+<a href="/">go home</a>
