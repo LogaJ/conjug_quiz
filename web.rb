@@ -46,11 +46,11 @@ post '/new/conjugation' do
 end
 
 get '/ajax/conjugation' do
-  erb :get_conjugation, :layout => false
+  erb :display_conjugation, :layout => false
 end
 
 post '/ajax/conjugation' do
   return_value_for_existing_cojugation
 
-  erb :get_conjugation, :layout => false
+  erb :display_conjugation, :layout => false
 end
