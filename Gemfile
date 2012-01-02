@@ -11,3 +11,6 @@ gem 'sinatra'
 gem 'thin', '1.2.7'
 gem 'heroku'
 gem 'foreman'
+
+gem "nokogiri"
+gem "babelfish"

@@ -1,5 +1,12 @@
 require 'data_mapper'
-DataMapper.setup(:default, ENV['DATABASE_URL'] || "postgres://localhost/conjugapp")
+
+DataMapper.setup(
+  :default,
+  :adapter => 'postgres',
+  :host => 'localhost',
+  :database => 'conjugapp',
+  :encoding => 'UTF-8'
+)
 
 class Verb
   include DataMapper::Resource
