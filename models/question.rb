@@ -1,3 +1,4 @@
+require 'dm-migrations'
 require 'data_mapper'
 
 DataMapper.setup(
@@ -28,3 +29,4 @@ class Conjugation
 end
 
 DataMapper.finalize
+DataMapper.auto_upgrade!
