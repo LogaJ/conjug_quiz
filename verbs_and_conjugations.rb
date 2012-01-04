@@ -18,11 +18,7 @@ class VerbsAndConjugations
 
       ['singular','plural'].each do |number|
         ['1st', '2nd', '3rd'].each do |person|
-          cong = conjugations.shift 
-          conjug = cong.encode!("UTF-8")
-          puts "~~~~~~~~"
-          puts conjug
-          puts "~~~~~~~~"
+          conjug = conjugations.shift 
 
           conjugation.create(
             :verb_id => verb.id, 
