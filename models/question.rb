@@ -28,5 +28,20 @@ class Conjugation
   belongs_to :verb
 end
 
+class User
+  include DataMapper::Resource
+  property :id, Serial
+  property :username, String, :unique => true, :required => true
+  property :password, String, :required => true
+
+  def self.authenticate username, password
+    if (user = User.first(:username => username, :password => password))
+      return user
+    else
+      return nil
+    end
+  end
+end
+
 DataMapper.finalize
 DataMapper.auto_upgrade!
