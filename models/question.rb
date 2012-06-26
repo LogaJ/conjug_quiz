@@ -6,7 +6,9 @@ DataMapper.setup(
   :adapter => 'postgres',
   :host => 'localhost',
   :database => 'conjugapp',
-  :encoding => 'UTF-8'
+  :encoding => 'UTF-8',
+  :user => 'postgres',
+  :password => 'letmein'
 )
 
 class Verb
