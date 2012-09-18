@@ -3,12 +3,9 @@ require 'data_mapper'
 
 DataMapper.setup(
   :default,
-  :adapter => 'postgres',
+  :adapter => 'sqlite',
   :host => 'localhost',
   :database => 'conjugapp',
-  :encoding => 'UTF-8',
-  :user => 'postgres',
-  :password => 'letmein'
 )
 
 class Verb
