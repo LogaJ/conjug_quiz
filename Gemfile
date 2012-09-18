@@ -3,6 +3,8 @@ source :rubygems
 gem 'datamapper'
 gem 'pg'
 
+gem 'pry'
+
 gem 'dm-postgres-adapter'
 gem 'dm-sqlite-adapter'
 

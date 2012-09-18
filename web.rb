@@ -1,4 +1,5 @@
 require 'sinatra'
+require 'pry'
 require "#{Dir.pwd}/lib/application_helper"
 
 enable :sessions

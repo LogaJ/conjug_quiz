@@ -13,18 +13,19 @@ class VerbsAndConjugations
                   :meaning => verb_and_conjugations[:meaning])
 
       verb = Verb.first(:name => verb_and_conjugations[:verb])
-      conjugation = verb.conjugations
+			#maybe the verb isn't being saved into the db??
+      conjugations_for_verb = verb.conjugations
 
 
       ['singular','plural'].each do |number|
         ['1st', '2nd', '3rd'].each do |person|
-          conjug = conjugations.shift 
+          conjugation = conjugations.shift 
 
-          conjugation.create(
+          conjugations_for_verb.create(
             :verb_id => verb.id, 
             :person => person,
             :singular_or_plural => number,
-            :value => conjug
+            :value => conjugation
           )
         end
       end
