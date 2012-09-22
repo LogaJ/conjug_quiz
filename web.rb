@@ -2,7 +2,7 @@ require 'sinatra'
 require 'pry'
 require "#{Dir.pwd}/lib/application_helper"
 
-enable :sessions
+enable :sessions, :logging
 
 get '/' do
   erb :index
