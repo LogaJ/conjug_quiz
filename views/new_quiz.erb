@@ -1,7 +1,7 @@
 <form action="/check/answers" method="POST">
   <% @questions.each do |q| %><p>
 
-   What is the <%= q[:conjugation].person %> person <%= q[:conjugation].singular_or_plural %> for the verb: <%= q[:verb].name %> (<%= q[:verb].meaning %>)
+		What is the<b> <%= q[:conjugation].person %> person <%= q[:conjugation].singular_or_plural %> </b> for the verb: <b> <%= q[:verb].name %> ( <i><%= q[:verb].meaning %></i>) </b>
    <input type="text" name="question_<%= q[:conjugation].conjugation_id  %>" id="question_<%= q[:conjugation].conjugation_id  %>"></input></p>
   <% end %>
 

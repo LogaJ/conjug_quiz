@@ -9,7 +9,7 @@ get '/' do
 end
 
 get '/new/quiz' do
-  @questions = generate_question_info_for random_conjugations
+  @quiz_questions = display_questions
 
   erb :new_quiz
 end
